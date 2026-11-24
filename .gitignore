@@ -1,0 +1,13 @@
+# Mobile
+mobile/node_modules/
+mobile/.expo/
+mobile/dist/
+mobile/web-build/
+
+# Environment files
+.env.local
+*.log
+
+# OS generated
+.DS_Store
+Thumbs.db

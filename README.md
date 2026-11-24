@@ -30,7 +30,8 @@ Chi tiết (input, processing, output, độ phức tạp, ưu/nhược điểm,
 ## Công nghệ
 | Lớp | Công nghệ |
 |---|---|
-| Frontend | React 19, TypeScript, Vite, Tailwind CSS 4, TanStack Query, React Router, Leaflet (OpenStreetMap/CARTO), ECharts |
+| Frontend Web | React 19, TypeScript, Vite, Tailwind CSS 4, TanStack Query, React Router, Leaflet, ECharts |
+| Mobile App | React Native, Expo SDK 52, TypeScript, React Navigation, Async Storage |
 | Backend | Node.js, Express, Zod (validation), JWT HS256 + refresh token xoay vòng, scrypt (băm mật khẩu), RBAC |
 | Real-time | Server-Sent Events (server → client) + REST (client → server); WebRTC cho video |
 | Database | PostgreSQL (27 bảng, khai báo bằng Drizzle ORM trong `backend/db/schema.js`) |
@@ -49,6 +50,11 @@ frontend/
   src/pages/patient|doctor|admin|shared|auth
   src/components/        MapView, kit UI, layouts, IncomingOffer, IncomingCall
   src/lib/               http (JWT + refresh), realtime (SSE), format, location, mapProvider
+mobile/
+  App.tsx                giao diện di động chính Expo
+  src/screens/           màn hình người bệnh, bác sĩ, chat, gọi video, khám ngay (Grab-like)
+  src/services/api.ts    kết nối toàn diện với Backend API
+  src/navigation/        RootNavigator & Bottom Tabs
 plan.md                  kế hoạch & nhật ký triển khai theo sprint
 ```
 
@@ -58,6 +64,7 @@ Yêu cầu: Node.js ≥ 20 (hoặc Bun).
 ```bash
 cd backend  && npm install      # hoặc: bun install
 cd frontend && npm install
+cd mobile   && npm install
 ```
 
 **Lưu ý về cơ sở dữ liệu:** dự án được xây dựng trên nền tảng Surf Studio; backend truy cập PostgreSQL qua `@surf-ai/sdk/db` (tự tạo bảng từ `db/schema.js`, tự seed dữ liệu ở lần chạy đầu). Để chạy ngoài nền tảng cần:
@@ -67,6 +74,7 @@ cd frontend && npm install
 ```bash
 cd backend  && npm run dev       # API: http://localhost:3001/api
 cd frontend && npm run dev       # Web: http://localhost:5173
+cd mobile   && npx expo start    # Mobile: Quét mã QR qua app Expo Go
 ```
 
 ## Kiểm thử
